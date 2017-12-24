@@ -462,5 +462,12 @@ drivers:
     variant: null
     clocks:
       domain_group: null
-pads: {}
+pads:
+  LED:
+    name: PA30
+    definition: Atmel:SAMD10_Drivers:0.0.1::SAMD10D13A-SSU::pad::PA30
+    mode: Digital output
+    user_label: LED
+    configuration:
+      pad_initial_level: High
 toolchain_options: []
