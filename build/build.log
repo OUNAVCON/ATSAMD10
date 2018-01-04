@@ -1,6 +1,0 @@
-
-/opt/gcc-arm/bin/arm-none-eabi-gcc -c -mthumb -mcpu=cortex-m0plus -g -fno-common -Wall -ffreestanding -ffunction-sections -fdata-sections -Iincludes -o src/main.o src/main.c
-
-/opt/gcc-arm/bin/arm-none-eabi-gcc -c -mthumb -mcpu=cortex-m0plus -g -fno-common -Wall -ffreestanding -ffunction-sections -fdata-sections -Iincludes -o src/clocks.o src/clocks.c
-
-

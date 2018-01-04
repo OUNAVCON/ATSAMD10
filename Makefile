@@ -75,9 +75,7 @@ $(OUT_DIR):
 	@mkdir -p $@
 
 flash:
-	@$(SEGGER) -si swd -device S9KEAZN8xxxx -speed auto -CommanderScript ./seggerScript.jlink
-	
-
+	@$(SEGGER) -si swd -device ATSAMD10D13AS -speed auto -CommanderScript ./seggerScript.jlink
  
 clean:
 	@echo Removing Build Files

@@ -1,31 +1,3 @@
-/**
- * \file
- *
- * \brief Header file for SAMD10D13AS
- *
- * Copyright (c) 2016 Atmel Corporation,
- *                    a wholly owned subsidiary of Microchip Technology Inc.
- *
- * \asf_license_start
- *
- * \page License
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the Licence at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- *
- * \asf_license_stop
- *
- */
-
 #ifndef _SAMD10D13AS_
 #define _SAMD10D13AS_
 
@@ -206,66 +178,6 @@ void PTC_Handler                 ( void );
 
 /*@}*/
 
-/* ************************************************************************** */
-/**  SOFTWARE PERIPHERAL API DEFINITION FOR SAMD10D13AS */
-/* ************************************************************************** */
-/** \defgroup SAMD10D13AS_api Peripheral Software API */
-/*@{*/
-
-#include "component/ac.h"
-#include "component/adc.h"
-#include "component/dac.h"
-#include "component/dmac.h"
-#include "component/dsu.h"
-#include "component/eic.h"
-#include "component/evsys.h"
-#include "component/gclk.h"
-#include "component/hmatrixb.h"
-#include "component/mtb.h"
-#include "component/nvmctrl.h"
-#include "component/pac.h"
-#include "component/pm.h"
-#include "component/port.h"
-#include "component/rtc.h"
-#include "component/sercom.h"
-#include "component/sysctrl.h"
-#include "component/tc.h"
-#include "component/tcc.h"
-#include "component/wdt.h"
-/*@}*/
-
-/* ************************************************************************** */
-/**  REGISTERS ACCESS DEFINITIONS FOR SAMD10D13AS */
-/* ************************************************************************** */
-/** \defgroup SAMD10D13AS_reg Registers Access Definitions */
-/*@{*/
-
-#include "instance/ac.h"
-#include "instance/adc.h"
-#include "instance/dac.h"
-#include "instance/dmac.h"
-#include "instance/dsu.h"
-#include "instance/eic.h"
-#include "instance/evsys.h"
-#include "instance/gclk.h"
-#include "instance/sbmatrix.h"
-#include "instance/mtb.h"
-#include "instance/nvmctrl.h"
-#include "instance/pac0.h"
-#include "instance/pac1.h"
-#include "instance/pac2.h"
-#include "instance/pm.h"
-#include "instance/port.h"
-#include "instance/rtc.h"
-#include "instance/sercom0.h"
-#include "instance/sercom1.h"
-#include "instance/sercom2.h"
-#include "instance/sysctrl.h"
-#include "instance/tc1.h"
-#include "instance/tc2.h"
-#include "instance/tcc0.h"
-#include "instance/wdt.h"
-/*@}*/
 
 /* ************************************************************************** */
 /**  PERIPHERAL ID DEFINITIONS FOR SAMD10D13AS */
