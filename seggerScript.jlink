@@ -1,0 +1,1 @@
+loadbin build/app.bin 0x0

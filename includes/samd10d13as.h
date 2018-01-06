@@ -84,6 +84,25 @@ typedef enum IRQn
   PERIPH_COUNT_IRQn        = 19  /**< Number of peripheral IDs */
 } IRQn_Type;
 
+/*
+ * \brief Configuration of the Cortex-M0+ Processor and Core Peripherals
+ */
+
+#define LITTLE_ENDIAN          1        
+#define __CM0PLUS_REV          1         /*!< Core revision r0p1 */
+#define __MPU_PRESENT          0         /*!< MPU present or not */
+#define __NVIC_PRIO_BITS       2         /*!< Number of bits used for Priority Levels */
+#define __VTOR_PRESENT         1         /*!< VTOR present or not */
+#define __Vendor_SysTickConfig 0         /*!< Set to 1 if different SysTick Config is used */
+
+/**
+ * \brief CMSIS includes
+ */
+
+#include <core_cm0plus.h>
+#include "system_samd10.h"
+
+/*@}*/
 typedef struct _DeviceVectors
 {
   /* Stack pointer */
@@ -93,16 +112,16 @@ typedef struct _DeviceVectors
   void* pfnReset_Handler;
   void* pfnNMI_Handler;
   void* pfnHardFault_Handler;
-  void* pvReservedM12;
-  void* pvReservedM11;
-  void* pvReservedM10;
-  void* pvReservedM9;
-  void* pvReservedM8;
-  void* pvReservedM7;
-  void* pvReservedM6;
+  void* pfnReservedM12;
+  void* pfnReservedM11;
+  void* pfnReservedM10;
+  void* pfnReservedM9;
+  void* pfnReservedM8;
+  void* pfnReservedM7;
+  void* pfnReservedM6;
   void* pfnSVC_Handler;
-  void* pvReservedM4;
-  void* pvReservedM3;
+  void* pfnReservedM4;
+  void* pfnReservedM3;
   void* pfnPendSV_Handler;
   void* pfnSysTick_Handler;
 
@@ -114,7 +133,7 @@ typedef struct _DeviceVectors
   void* pfnEIC_Handler;                   /*  4 External Interrupt Controller */
   void* pfnNVMCTRL_Handler;               /*  5 Non-Volatile Memory Controller */
   void* pfnDMAC_Handler;                  /*  6 Direct Memory Access Controller */
-  void* pvReserved7;
+  void* pfnReserved7;
   void* pfnEVSYS_Handler;                 /*  8 Event System Interface */
   void* pfnSERCOM0_Handler;               /*  9 Serial Communication Interface 0 */
   void* pfnSERCOM1_Handler;               /* 10 Serial Communication Interface 1 */
@@ -155,28 +174,6 @@ void ADC_Handler                 ( void );
 void AC_Handler                  ( void );
 void DAC_Handler                 ( void );
 void PTC_Handler                 ( void );
-
-/*
- * \brief Configuration of the Cortex-M0+ Processor and Core Peripherals
- */
-
-#define LITTLE_ENDIAN          1        
-#define __CM0PLUS_REV          1         /*!< Core revision r0p1 */
-#define __MPU_PRESENT          0         /*!< MPU present or not */
-#define __NVIC_PRIO_BITS       2         /*!< Number of bits used for Priority Levels */
-#define __VTOR_PRESENT         1         /*!< VTOR present or not */
-#define __Vendor_SysTickConfig 0         /*!< Set to 1 if different SysTick Config is used */
-
-/**
- * \brief CMSIS includes
- */
-
-#include <core_cm0plus.h>
-#if !defined DONT_USE_CMSIS_INIT
-#include "system_samd10.h"
-#endif /* DONT_USE_CMSIS_INIT */
-
-/*@}*/
 
 
 /* ************************************************************************** */
@@ -226,7 +223,7 @@ void PTC_Handler                 ( void );
 /** \defgroup SAMD10D13AS_base Peripheral Base Address Definitions */
 /*@{*/
 
-#if defined(__ASSEMBLY__) || defined(__IAR_SYSTEMS_ASM__)
+//#if defined(__ASSEMBLY__) || defined(__IAR_SYSTEMS_ASM__)
 #define AC                            (0x42002400) /**< \brief (AC) APB Base Address */
 #define ADC                           (0x42002000) /**< \brief (ADC) APB Base Address */
 #define DAC                           (0x42002800) /**< \brief (DAC) APB Base Address */
@@ -261,109 +258,18 @@ void PTC_Handler                 ( void );
 #define TC2                           (0x42001C00) /**< \brief (TC2) APB Base Address */
 #define TCC0                          (0x42001400) /**< \brief (TCC0) APB Base Address */
 #define WDT                           (0x40001000) /**< \brief (WDT) APB Base Address */
-#else
-#define AC                ((Ac       *)0x42002400UL) /**< \brief (AC) APB Base Address */
-#define AC_INST_NUM       1                          /**< \brief (AC) Number of instances */
-#define AC_INSTS          { AC }                     /**< \brief (AC) Instances List */
-
-#define ADC               ((Adc      *)0x42002000UL) /**< \brief (ADC) APB Base Address */
-#define ADC_INST_NUM      1                          /**< \brief (ADC) Number of instances */
-#define ADC_INSTS         { ADC }                    /**< \brief (ADC) Instances List */
-
-#define DAC               ((Dac      *)0x42002800UL) /**< \brief (DAC) APB Base Address */
-#define DAC_INST_NUM      1                          /**< \brief (DAC) Number of instances */
-#define DAC_INSTS         { DAC }                    /**< \brief (DAC) Instances List */
-
-#define DMAC              ((Dmac     *)0x41004800UL) /**< \brief (DMAC) APB Base Address */
-#define DMAC_INST_NUM     1                          /**< \brief (DMAC) Number of instances */
-#define DMAC_INSTS        { DMAC }                   /**< \brief (DMAC) Instances List */
-
-#define DSU               ((Dsu      *)0x41002000UL) /**< \brief (DSU) APB Base Address */
-#define DSU_INST_NUM      1                          /**< \brief (DSU) Number of instances */
-#define DSU_INSTS         { DSU }                    /**< \brief (DSU) Instances List */
-
-#define EIC               ((Eic      *)0x40001800UL) /**< \brief (EIC) APB Base Address */
-#define EIC_INST_NUM      1                          /**< \brief (EIC) Number of instances */
-#define EIC_INSTS         { EIC }                    /**< \brief (EIC) Instances List */
-
-#define EVSYS             ((Evsys    *)0x42000400UL) /**< \brief (EVSYS) APB Base Address */
-#define EVSYS_INST_NUM    1                          /**< \brief (EVSYS) Number of instances */
-#define EVSYS_INSTS       { EVSYS }                  /**< \brief (EVSYS) Instances List */
-
-#define GCLK              ((Gclk     *)0x40000C00UL) /**< \brief (GCLK) APB Base Address */
-#define GCLK_INST_NUM     1                          /**< \brief (GCLK) Number of instances */
-#define GCLK_INSTS        { GCLK }                   /**< \brief (GCLK) Instances List */
-
-#define SBMATRIX          ((Hmatrixb *)0x41007000UL) /**< \brief (SBMATRIX) APB Base Address */
-#define HMATRIXB_INST_NUM 1                          /**< \brief (HMATRIXB) Number of instances */
-#define HMATRIXB_INSTS    { SBMATRIX }               /**< \brief (HMATRIXB) Instances List */
-
-#define MTB               ((Mtb      *)0x41006000UL) /**< \brief (MTB) APB Base Address */
-#define MTB_INST_NUM      1                          /**< \brief (MTB) Number of instances */
-#define MTB_INSTS         { MTB }                    /**< \brief (MTB) Instances List */
-
-#define NVMCTRL           ((Nvmctrl  *)0x41004000UL) /**< \brief (NVMCTRL) APB Base Address */
-#define NVMCTRL_CAL                   (0x00800000UL) /**< \brief (NVMCTRL) CAL Base Address */
-#define NVMCTRL_LOCKBIT               (0x00802000UL) /**< \brief (NVMCTRL) LOCKBIT Base Address */
-#define NVMCTRL_OTP1                  (0x00806000UL) /**< \brief (NVMCTRL) OTP1 Base Address */
-#define NVMCTRL_OTP2                  (0x00806008UL) /**< \brief (NVMCTRL) OTP2 Base Address */
-#define NVMCTRL_OTP4                  (0x00806020UL) /**< \brief (NVMCTRL) OTP4 Base Address */
-#define NVMCTRL_TEMP_LOG              (0x00806030UL) /**< \brief (NVMCTRL) TEMP_LOG Base Address */
-#define NVMCTRL_USER                  (0x00804000UL) /**< \brief (NVMCTRL) USER Base Address */
-#define NVMCTRL_INST_NUM  1                          /**< \brief (NVMCTRL) Number of instances */
-#define NVMCTRL_INSTS     { NVMCTRL }                /**< \brief (NVMCTRL) Instances List */
-
-#define PAC0              ((Pac      *)0x40000000UL) /**< \brief (PAC0) APB Base Address */
-#define PAC1              ((Pac      *)0x41000000UL) /**< \brief (PAC1) APB Base Address */
-#define PAC2              ((Pac      *)0x42000000UL) /**< \brief (PAC2) APB Base Address */
-#define PAC_INST_NUM      3                          /**< \brief (PAC) Number of instances */
-#define PAC_INSTS         { PAC0, PAC1, PAC2 }       /**< \brief (PAC) Instances List */
-
-#define PM                ((Pm       *)0x40000400UL) /**< \brief (PM) APB Base Address */
-#define PM_INST_NUM       1                          /**< \brief (PM) Number of instances */
-#define PM_INSTS          { PM }                     /**< \brief (PM) Instances List */
-
-#define PORT              ((Port     *)0x41004400UL) /**< \brief (PORT) APB Base Address */
-#define PORT_IOBUS        ((Port     *)0x60000000UL) /**< \brief (PORT) IOBUS Base Address */
-#define PORT_INST_NUM     1                          /**< \brief (PORT) Number of instances */
-#define PORT_INSTS        { PORT }                   /**< \brief (PORT) Instances List */
-#define PORT_IOBUS_INST_NUM 1                          /**< \brief (PORT) Number of instances */
-#define PORT_IOBUS_INSTS  { PORT_IOBUS }             /**< \brief (PORT) Instances List */
-
-#define PTC               ((void     *)0x42002C00UL) /**< \brief (PTC) APB Base Address */
-#define PTC_GCLK_ID       23
-#define PTC_INST_NUM      1                          /**< \brief (PTC) Number of instances */
-#define PTC_INSTS         { PTC }                    /**< \brief (PTC) Instances List */
-
-#define RTC               ((Rtc      *)0x40001400UL) /**< \brief (RTC) APB Base Address */
-#define RTC_INST_NUM      1                          /**< \brief (RTC) Number of instances */
-#define RTC_INSTS         { RTC }                    /**< \brief (RTC) Instances List */
-
-#define SERCOM0           ((Sercom   *)0x42000800UL) /**< \brief (SERCOM0) APB Base Address */
-#define SERCOM1           ((Sercom   *)0x42000C00UL) /**< \brief (SERCOM1) APB Base Address */
-#define SERCOM2           ((Sercom   *)0x42001000UL) /**< \brief (SERCOM2) APB Base Address */
-#define SERCOM_INST_NUM   3                          /**< \brief (SERCOM) Number of instances */
-#define SERCOM_INSTS      { SERCOM0, SERCOM1, SERCOM2 } /**< \brief (SERCOM) Instances List */
-
-#define SYSCTRL           ((Sysctrl  *)0x40000800UL) /**< \brief (SYSCTRL) APB Base Address */
-#define SYSCTRL_INST_NUM  1                          /**< \brief (SYSCTRL) Number of instances */
-#define SYSCTRL_INSTS     { SYSCTRL }                /**< \brief (SYSCTRL) Instances List */
-
-#define TC1               ((Tc       *)0x42001800UL) /**< \brief (TC1) APB Base Address */
-#define TC2               ((Tc       *)0x42001C00UL) /**< \brief (TC2) APB Base Address */
-#define TC_INST_NUM       2                          /**< \brief (TC) Number of instances */
-#define TC_INSTS          { TC1, TC2 }               /**< \brief (TC) Instances List */
-
-#define TCC0              ((Tcc      *)0x42001400UL) /**< \brief (TCC0) APB Base Address */
-#define TCC_INST_NUM      1                          /**< \brief (TCC) Number of instances */
-#define TCC_INSTS         { TCC0 }                   /**< \brief (TCC) Instances List */
-
-#define WDT               ((Wdt      *)0x40001000UL) /**< \brief (WDT) APB Base Address */
-#define WDT_INST_NUM      1                          /**< \brief (WDT) Number of instances */
-#define WDT_INSTS         { WDT }                    /**< \brief (WDT) Instances List */
-
-#endif /* (defined(__ASSEMBLY__) || defined(__IAR_SYSTEMS_ASM__)) */
 /*@}*/
+
+#define WDT_CTRL     (*((volatile uint8_t *)WDT+0x00))
+#define WDT_CONFIG   (*((volatile uint8_t *)WDT+0x01))
+#define WDT_INTENCLR (*((volatile uint8_t *)WDT+0x04))
+#define WDT_INTENSET (*((volatile uint8_t *)WDT+0x05))
+#define WDT_INTFLAG  (*((volatile uint8_t *)WDT+0x06))
+#define WDT_STATUS   (*((volatile uint8_t *)WDT+0x07))
+#define WDT_CLEAR    (*((volatile uint8_t *)WDT+0x08))
+
+
+
 
 /* ************************************************************************** */
 /**  PORT DEFINITIONS FOR SAMD10D13AS */

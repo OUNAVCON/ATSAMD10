@@ -6,7 +6,8 @@ void main (void){
 initClocks();
 uint8_t i=0;
 
-i++;
-
+     while(1){
+        i++;
+    }
 
 }
