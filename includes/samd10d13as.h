@@ -325,7 +325,7 @@ void PTC_Handler                 ( void );
 #define SYSCTRL_PCLKSR     (*((volatile uint32_t *)SYSCTRL+0x000C))
 #define SYSCTRL_XOSC       (*((volatile uint16_t *)SYSCTRL+0x0010))
 #define SYSCTRL_XOSC32K    (*((volatile uint16_t *)SYSCTRL+0x0014))
-#define SYSCTRL OSC32K     (*((volatile uint32_t *)SYSCTRL+0x0018))
+#define SYSCTRL_OSC32K     (*((volatile uint32_t *)SYSCTRL+0x0018))
 #define SYSCTRL_OSCULP32K  (*((volatile uint8_t  *)SYSCTRL+0x001C))
 #define SYSCTRL_OSC8M      (*((volatile uint32_t *)SYSCTRL+0x0020))
 #define SYSCTRL_FPLLCTRL   (*((volatile uint16_t *)SYSCTRL+0x0024))
@@ -397,7 +397,7 @@ void PTC_Handler                 ( void );
 #define EIC_NMIFLAG        (*((volatile uint8_t  *)EIC+0x0003))
 #define EIC_EVCTRL         (*((volatile uint32_t *)EIC+0x0004))
 #define EIC_INTENCLR       (*((volatile uint32_t *)EIC+0x0008))
-#deifne EIC_INTENSET       (*((volatile uint32_t *)EIC+0x000C))
+#define EIC_INTENSET       (*((volatile uint32_t *)EIC+0x000C))
 #define EIC_INTFLAG        (*((volatile uint32_t *)EIC+0x0010))
 #define EIC_WAKEUP         (*((volatile uint32_t *)EIC+0x0014))
 #define EIC_CONFIG0        (*((volatile uint32_t *)EIC+0x0018))
@@ -431,7 +431,7 @@ void PTC_Handler                 ( void );
 #define _PORT_CTRL_OFFSET   0x24
 #define _PORT_WRCONFIG      0x28
 #define _PORT_MUX0_OFFSET   0x30
-#define 
+//#define 
 
 
 
