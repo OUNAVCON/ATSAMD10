@@ -31,7 +31,7 @@ BUILD_LOG = build.log
 SRC_PATH = src
 SRC = $(wildcard  $(SRC_PATH)/*.c) 
 INC_PATH = includes
-CFLAGS = -c -mthumb -mcpu=cortex-m0plus -g -fno-common -Wall -ffreestanding -ffunction-sections -fdata-sections -I$(INC_PATH)
+CFLAGS = -c -mthumb -mcpu=cortex-m0plus -g -fno-common -Wall -ffreestanding -ffunction-sections -fdata-sections -I$(INC_PATH) -I"$(ARM)../includes"
 ASMFLAGS = -mthumb -mcpu=cortex-m0plus
 OBJ_CPY = $(ARM)-objcopy
 LDFLAGS = -T lnk.ld -nostartfiles -nostdlib -Map=$(PROJECT).map 
@@ -74,6 +74,11 @@ $(OUT_DIR):
 	@echo Creating Build DIR
 	@mkdir -p $@
 
+debug:
+#	@$(CFLAGS) = $(CFLAGS) -g3 -ggdb
+#	@$(all)
+#	@$(GDB) 
+
 flash:
 	@$(SEGGER) -si swd -device ATSAMD10D13AS -speed auto -CommanderScript ./seggerScript.jlink
  
@@ -81,6 +86,6 @@ clean:
 	@echo Removing Build Files
 	@rm -rf ${OUT_DIR}/*
 
-.PHONY: all clean test flash
+.PHONY: all clean test flash debug
 
  

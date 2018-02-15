@@ -1,13 +1,27 @@
 #include "stdint.h"
 #include "clocks.h"
+#include "gpio.h"
+#include "samd10d13as.h"
 
-void main (void){
+int main (void){
+int i=0;
 
-initClocks();
-uint8_t i=0;
+PAC0_WPCLR = 0xFFFFFFFF;
+PAC1_WPCLR = 0xFFFFFFFF;
+PAC2_WPCLR = 0xFFFFFFFF;
 
-     while(1){
+//initClocks();
+//initAdc()
+//initSerial()
+//initPwm
+//initGpio();
+
+
+    while(1){
         i++;
+//	if(i > 2){
+//            i=0;
+//	}
     }
-
+return 0;
 }

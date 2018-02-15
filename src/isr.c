@@ -12,7 +12,7 @@ extern uint32_t _sstack;
 extern uint32_t _estack;
 
 /** \cond DOXYGEN_SHOULD_SKIP_THIS */
-int main(void);
+extern int main(void);
 /** \endcond */
 
 void __libc_init_array(void);
@@ -21,14 +21,14 @@ void __libc_init_array(void);
 void Dummy_Handler(void);
 
 /* Exception Table */
-__attribute__ ((section(".vectors")))
+__attribute__ ((section(".isrVectors")))
 const DeviceVectors exception_table = {
 
         /* Configure Initial Stack Pointer, using linker-generated symbols */
-        (void*) (0x00000000),
-        (void*) main,
-        (void*) Dummy_Handler,
-        (void*) Dummy_Handler,
+        (void*) Reset_Handler, //(0x00000000),
+        (void*) Reset_Handler, //Reset
+        (void*) NMI_Handler, //NMI
+        (void*) HardFault_Handler, //Hard Fault
         (void*) (0UL), /* Reserved */
         (void*) (0UL), /* Reserved */
         (void*) (0UL), /* Reserved */
@@ -36,11 +36,11 @@ const DeviceVectors exception_table = {
         (void*) (0UL), /* Reserved */
         (void*) (0UL), /* Reserved */
         (void*) (0UL), /* Reserved */
-        (void*) Dummy_Handler,
+        (void*) Dummy_Handler, //SV Call
         (void*) (0UL), /* Reserved */
         (void*) (0UL), /* Reserved */
-        (void*) Dummy_Handler,
-        (void*) Dummy_Handler,
+        (void*) Dummy_Handler, //Pend SV
+        (void*) Dummy_Handler, //SysTick
 
         /* Configurable interrupts */
         (void*) Dummy_Handler,             /*  0 Power Manager */
@@ -70,13 +70,33 @@ const DeviceVectors exception_table = {
  */
 void Reset_Handler(void)
 {
+	//See what went wrong...
+	main();
 }
 
+void NMI_Handler(void){
+    for(;;){
+        ;
+    }
+}
+
+void HardFault_Handler(void){
+    for(;;){
+        ;
+    }
+}
 /**
  * \brief Default interrupt handler for unused IRQs.
  */
 void Dummy_Handler(void)
 {
+	int i = 0;
         while (1) {
+	 i++;
         }
+}
+
+void PM_Handler(void)
+{
+
 }

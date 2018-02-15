@@ -260,10 +260,10 @@ void PTC_Handler                 ( void );
 #define WDT                           (0x40001000) /**< \brief (WDT) APB Base Address */
 /*@}*/
 
-#define PAC0_WPCLR   (*((voltaile uint32_t *)PAC0+0x00))
-#define PAC0_WPSET   (*((voltaile uint32_t *)PAC0+0x04))
+#define PAC0_WPCLR   (*((volatile uint32_t *)PAC0+0x00))
+#define PAC0_WPSET   (*((volatile uint32_t *)PAC0+0x04))
 
-#define PAC1_WPCLR   (*((voltaile uint32_t *)PAC1+0x00))
+#define PAC1_WPCLR   (*((volatile uint32_t *)PAC1+0x00))
 #define PAC1_WPSET   (*((volatile uint32_t *)PAC1+0x04))
 
 #define PAC2_WPCLR   (*((volatile uint32_t *)PAC2+0x00))
@@ -419,20 +419,22 @@ void PTC_Handler                 ( void );
 #define PORTE            4
 #define PORTF            5
 
-#define _PORT_DIR_OFFSET    0x00
-#define _PORT_DIRCLR_OFFSET 0x04
-#define _PORT_DIRSET_OFFSET 0x08
-#define _PORT_DIRTGL_OFFSET 0x0C
-#define _PORT_OUT_OFFSET    0x10
-#define _PORT_OUTCLR_OFFSET 0x14
-#define _PORT_OUTSET_OFFSET 0x18
-#define _PORT_OUTTGL_OFFSET 0x1C
-#define _PORT_IN_OFFSET     0x20
-#define _PORT_CTRL_OFFSET   0x24
-#define _PORT_WRCONFIG      0x28
-#define _PORT_MUX0_OFFSET   0x30
-//#define 
 
+#define PORT_BASE          0x80
+
+#define PORT_DIR(p)        (*((volatile uint32_t *)(PORT + PORT_BASE*p + 0x00)))
+#define PORT_DIRCLR(p)     (*((volatile uint32_t *)(PORT + PORT_BASE*p + 0x04)))
+#define PORT_DIRSET(p)     (*((volatile uint32_t *)(PORT + PORT_BASE*p + 0x08)))
+#define PORT_DIRTGL(p)     (*((volatile uint32_t *)(PORT + PORT_BASE*p + 0x0C)))
+#define PORT_OUT(p)        (*((volatile uint32_t *)(PORT + PORT_BASE*p + 0x10)))
+#define PORT_OUTCLR(p)     (*((volatile uint32_t *)(PORT + PORT_BASE*p + 0x14)))
+#define PORT_OUTSET(p)     (*((volatile uint32_t *)(PORT + PORT_BASE*p + 0x18)))
+#define PORT_OUTTGL(p)     (*((volatile uint32_t *)(PORT + PORT_BASE*p + 0x1C)))
+#define PORT_IN(p)         (*((volatile uint32_t *)(PORT + PORT_BASE*p + 0x20)))
+#define PORT_CTRL(p)       (*((volatile uint32_t *)(PORT + PORT_BASE*p + 0x24)))
+#define PORT_WRCONFIG(p)   (*((volatile uint32_t *)(PORT + PORT_BASE*p + 0x28)))
+#define PORT_MUX(portV,pin) (*((volatile uint8_t *)(PORT + PORT_BASE*portV + pin + 0x30)))
+#define PORT_PINCFG(portV,pin)   (*((volatile uint8_t *)(PORT + PORT_BASE*portV + pin + 0x40)))
 
 
 

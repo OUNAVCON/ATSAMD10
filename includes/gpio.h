@@ -1,6 +1,6 @@
 #ifndef _GPIO_H_
 #define _GPIO_H_
 
-void init_gpio(void);
-
+void initGpio(void);
+void toggleLed(void);
 #endif
