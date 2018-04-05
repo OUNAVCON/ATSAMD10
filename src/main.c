@@ -6,21 +6,22 @@
 int main (void){
 int i=0;
 
-PAC0_WPCLR = 0xFFFFFFFF;
-PAC1_WPCLR = 0xFFFFFFFF;
-PAC2_WPCLR = 0xFFFFFFFF;
+//PAC0_WPCLR = 0xFFFFFFFF;
+//PAC1_WPCLR = 0xFFFFFFFF;
+//PAC2_WPCLR = 0xFFFFFFFF;
 
-//initClocks();
+initClocks();
 //initAdc()
 //initSerial()
 //initPwm
-//initGpio();
+initGpio();
 
 
     while(1){
         i++;
 //	if(i > 2){
 //            i=0;
+toggleLed();
 //	}
     }
 return 0;

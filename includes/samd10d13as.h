@@ -260,13 +260,13 @@ void PTC_Handler                 ( void );
 #define WDT                           (0x40001000) /**< \brief (WDT) APB Base Address */
 /*@}*/
 
-#define PAC0_WPCLR   (*((volatile uint32_t *)PAC0+0x00))
+#define PAC0_WPCLR   (*(volatile uint32_t *)(PAC0+0x00))
 #define PAC0_WPSET   (*((volatile uint32_t *)PAC0+0x04))
 
-#define PAC1_WPCLR   (*((volatile uint32_t *)PAC1+0x00))
+#define PAC1_WPCLR   (*(volatile uint32_t *)(PAC1+0x00))
 #define PAC1_WPSET   (*((volatile uint32_t *)PAC1+0x04))
 
-#define PAC2_WPCLR   (*((volatile uint32_t *)PAC2+0x00))
+#define PAC2_WPCLR   (*(volatile uint32_t *)(PAC2+0x00))
 #define PAC2_WPSET   (*((volatile uint32_t *)PAC2+0x04))
 
 #define DSU_CTRL     (*((volatile uint8_t *)DSU+0x0000))

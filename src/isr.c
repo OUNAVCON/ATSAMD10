@@ -10,7 +10,7 @@ extern uint32_t _szero;
 extern uint32_t _ezero;
 extern uint32_t _sstack;
 extern uint32_t _estack;
-
+extern uint32_t _stack_begin;
 /** \cond DOXYGEN_SHOULD_SKIP_THIS */
 extern int main(void);
 /** \endcond */
@@ -23,9 +23,8 @@ void Dummy_Handler(void);
 /* Exception Table */
 __attribute__ ((section(".isrVectors")))
 const DeviceVectors exception_table = {
-
         /* Configure Initial Stack Pointer, using linker-generated symbols */
-        (void*) Reset_Handler, //(0x00000000),
+	(void*) &_stack_begin, //(0x00000000),
         (void*) Reset_Handler, //Reset
         (void*) NMI_Handler, //NMI
         (void*) HardFault_Handler, //Hard Fault

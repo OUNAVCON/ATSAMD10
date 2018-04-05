@@ -2,6 +2,16 @@
 #include "clocks.h"
 
 void initClocks(void){
+
+//Set the CPUDIV
+PM_CPUSEL = 0x0;
+//Set the APBADIV
+PM_APBASEL = 0x0; 
+//Set the APBBDIV
+PM_APBBSEL = 0x0;
+//Set the APBCDIV
+PM_APBCSEL = 0x0;
+
 //Disable the Watch Dog.
 WDT_CTRL = 0x00;
 /*
