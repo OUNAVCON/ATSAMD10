@@ -223,6 +223,18 @@ void PTC_Handler                 ( void );
 /** \defgroup SAMD10D13AS_base Peripheral Base Address Definitions */
 /*@{*/
 
+/*
+ * Calibration data.
+ * 34:27 ADC Linearity CALIB offset: 0x28 bits: 0-7
+ * 37:35 ADC_Bias_Cal CALIB offset: 0x28 bits: 8-10
+ * 44:38 OSC 32k Cal OSC32K offset 0x18, bits: 16-22
+ * 63:58 DFLL 48M Course Cal //Loaded into DFLL48M Value offset 0x28
+ */
+#define CALIBRATION                   (0x00806020) //This is a 128bit value.
+#define SERIAL_NUMBER_0               (0x0080A00C)
+#define SERIAL_NUMBER_1               (0x0080A040)
+#define SERIAL_NUMBER_2               (0x0080A044)
+#define SERIAL_NUMBER_3               (0x0080A048)
 //#if defined(__ASSEMBLY__) || defined(__IAR_SYSTEMS_ASM__)
 #define AC                            (0x42002400) /**< \brief (AC) APB Base Address */
 #define ADC                           (0x42002000) /**< \brief (ADC) APB Base Address */
