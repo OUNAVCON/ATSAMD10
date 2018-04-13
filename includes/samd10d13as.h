@@ -272,7 +272,27 @@ void PTC_Handler                 ( void );
 #define CALIBRATION                   (0x00806020) //This is a 128bit value.
 /*@}*/
 
-#define ADC_STATUS   (*((volatile uint32_t *)(ADC+0x00)))
+#define ADC_CTRLA      (*((volatile uint8_t *)(ADC+0x00)))
+#define ADC_REFCTRL    (*((volatile uint8_t *)(ADC+0x01)))
+#define ADC_AVGCTRL    (*((volatile uint8_t *)(ADC+0x02)))
+#define ADC_SAMPCTRL   (*((volatile uint8_t *)(ADC+0x03)))
+#define ADC_CTRLB      (*((volatile uint16_t *)(ADC+0x04)))
+#define ADC_WINCTRL    (*((volatile uint8_t *)(ADC+0x08)))
+#define ADC_SWTRIG     (*((volatile uint8_t *)(ADC+0x0C)))
+#define ADC_INPUTCTRL  (*((volatile uint32_t *)(ADC+0x10)))
+#define ADC_EVCTRL     (*((volatile uint8_t *)(ADC+0x14)))
+#define ADC_INTENCLR   (*((volatile uint8_t *)(ADC+0x16)))
+#define ADC_INTENSET   (*((volatile uint8_t *)(ADC+0x17)))
+#define ADC_INTFLAG    (*((volatile uint8_t *)(ADC+0x18)))
+#define ADC_STATUS     (*((volatile uint8_t *)(ADC+0x19)))
+#define ADC_RESULT     (*((volatile uint16_t *)(ADC+0x1A)))
+#define ADC_WINLT      (*((volatile uint16_t *)(ADC+0x1C)))
+#define ADC_WINUT      (*((volatile uint16_t *)(ADC+0x20)))
+#define ADC_GAINCORR   (*((volatile uint16_t *)(ADC+0x24)))
+#define ADC_OFFSETCORR (*((volatile uint16_t *)(ADC+0x26)))
+#define ADC_CALIB      (*((volatile uint16_t *)(ADC+0x28)))
+#define ADC_DBGCTRL    (*((volatile uint8_t *)(ADC+0x2A)))
+
 
 #define PAC0_WPCLR   (*((volatile uint32_t *)(PAC0+0x00)))
 #define PAC0_WPSET   (*((volatile uint32_t *)(PAC0+0x04)))
