@@ -272,6 +272,8 @@ void PTC_Handler                 ( void );
 #define CALIBRATION                   (0x00806020) //This is a 128bit value.
 /*@}*/
 
+#define ADC_STATUS   (*((volatile uint32_t *)(ADC+0x00)))
+
 #define PAC0_WPCLR   (*((volatile uint32_t *)(PAC0+0x00)))
 #define PAC0_WPSET   (*((volatile uint32_t *)(PAC0+0x04)))
 

@@ -5,7 +5,7 @@
  *      Author: Isaac.Rose
  */
 #include "adc.h"
-
+#include "samd10d13as.h"
 
 void initAdc(){
     GCLK_CLKCTRL = 0x4113; //Set ADC to use OSC1, divide by 1

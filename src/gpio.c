@@ -2,12 +2,12 @@
 #include "gpio.h"
 
 static void initUsart(void);
-
+static void initAdcGpio(void);
 
 void initGpio(){
     PORT_DIRSET(PORTA) = 0x40; //PA06 (0x40) PA07(0x80)
     initUsart();
-    initAdc();
+    initAdcGpio();
 }
 
 void toggleLed(){
@@ -22,7 +22,7 @@ static void initUsart(void){
     PORT_PINCFG(PORTA,5) |= 0x01; //use pin mux value
 }
 
-static void initAdc(void){
+static void initAdcGpio(void){
     //ADC AIN_5 PA07
         PORT_DIRSET(PORTA) |= 0x80; //PA07
         PORT_MUX(PORTA,7) |= 0x10; //Upper Nibble is PA5 Lower Nibble is PA4, 0x1 is ADC
