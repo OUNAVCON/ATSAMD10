@@ -8,8 +8,8 @@
 #ifndef INCLUDES_ADC_H_
 #define INCLUDES_ADC_H_
 
-void initAdc();
-
+void initAdc(void);
+void adc_ISR(void);
 
 
 #endif /* INCLUDES_ADC_H_ */

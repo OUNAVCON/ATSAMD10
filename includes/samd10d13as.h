@@ -99,8 +99,8 @@ typedef enum IRQn
  * \brief CMSIS includes
  */
 
-#include <core_cm0plus.h>
-#include "system_samd10.h"
+//#include <core_cm0plus.h>
+//#include "system_samd10.h"
 
 /*@}*/
 typedef struct _DeviceVectors
@@ -270,7 +270,15 @@ void PTC_Handler                 ( void );
 #define TCC0                          (0x42001400) /**< \brief (TCC0) APB Base Address */
 #define WDT                           (0x40001000) /**< \brief (WDT) APB Base Address */
 #define CALIBRATION                   (0x00806020) //This is a 128bit value.
+//#define SCS                           (0xE000E000UL)
+//#define NVIC                          (SCS_BASE + 0x0100UL)
 /*@}*/
+// from http://infocenter.arm.com/help/topic/com.arm.doc.ddi0419d/DDI0419D_armv6m_arm.pdf
+#define NVIC_ISER      (*((volatile uint32_t *)(0xE000E100)))
+#define NVIC_ICER      (*((volatile uint32_t *)(0xE000E180)))
+#define NVIC_ISPR      (*((volatile uint32_t *)(0xE000E200)))
+#define NVIC_ICPR      (*((volatile uint32_t *)(0xE000E280)))
+#define NVIC_IPR(n)    (*((volatile uint32_t *)(0xE000E400 + (n*0x4))))
 
 #define ADC_CTRLA      (*((volatile uint8_t *)(ADC+0x00)))
 #define ADC_REFCTRL    (*((volatile uint8_t *)(ADC+0x01)))

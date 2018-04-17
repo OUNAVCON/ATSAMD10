@@ -10,11 +10,12 @@
 void initAdc(){
     GCLK_CLKCTRL = 0x4113; //Set ADC to use OSC1, divide by 1
     while(GCLK_STATUS & 0x80);
-
+    ADC_DBGCTRL = 0x01;
     ADC_REFCTRL = 0x02; //Ref is 1/2 VDDANA
     while(ADC_STATUS & 0x80);
-    ADC_CTRLB = 0x0302; //Write Sync'd, clock/128, 12bit conversion,
+    ADC_CTRLB = 0x0500; //Write Sync'd, clock/128, 12bit conversion,
     while(ADC_STATUS & 0x80);
+
     /*
      * Calibration data.
      * 34:27 ADC Linearity CALIB offset: 0x28 bits: 0-7
@@ -28,4 +29,13 @@ void initAdc(){
     ADC_CALIB = ADC_Cal;
     ADC_CTRLA = 0x02; //Enable the ADC. //Sync Busy.
    while(ADC_STATUS & 0x80);
+}
+
+void adc_ISR(void){
+    uint16_t results = 0;
+    ADC_INTENCLR |= 1;
+    ADC_INTFLAG |= 1;
+    while(ADC_STATUS & 0x80);
+    results = ADC_RESULT;
+    results++;
 }
