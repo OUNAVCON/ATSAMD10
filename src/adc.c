@@ -12,9 +12,9 @@ void initAdc(){
     while(GCLK_STATUS & 0x80);
 
     ADC_REFCTRL = 0x02; //Ref is 1/2 VDDANA
-    while(GCLK_STATUS & 0x80);
-    ADC_CTRLB = 0x0502; //Write Sync'd, clock/128, 12bit conversion,
-    while(GCLK_STATUS & 0x80);
+    while(ADC_STATUS & 0x80);
+    ADC_CTRLB = 0x0302; //Write Sync'd, clock/128, 12bit conversion,
+    while(ADC_STATUS & 0x80);
     /*
      * Calibration data.
      * 34:27 ADC Linearity CALIB offset: 0x28 bits: 0-7

@@ -22,7 +22,7 @@ initAdc();
                 i=0;
                 toggleLed();
                 while(ADC_STATUS & 0x80);
-                ADC_INPUTCTRL = 0x00000005;//Select Channel 5 - Write Sync'd
+                ADC_INPUTCTRL = 0x00001907;//Select Channel 5 - Write Sync'd
                 while(ADC_STATUS & 0x80);
                 ADC_SWTRIG |= 0x02; //Write Sync'd
                 while(ADC_STATUS & 0x80);
@@ -32,6 +32,7 @@ initAdc();
                 //Read the result.
                 while(ADC_STATUS & 0x80);
                 results = ADC_RESULT; // Read Sync'd
+                results = results+1;
         }
     }
 return 0;
