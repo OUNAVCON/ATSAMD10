@@ -26,7 +26,7 @@ initAdc();
                 
                 if(!(ADC_INTENSET & 0x01)){
                     while(ADC_STATUS & 0x80);
-                    ADC_INPUTCTRL = 0x00001807;//Select Channel 5 - Write Sync'd
+                    ADC_INPUTCTRL = 0x0F001805;//Select Channel 5 - Write Sync'd
                     while(ADC_STATUS & 0x80);
                     ADC_SWTRIG |= 0x02; //Write Sync'd
                     while(ADC_STATUS & 0x80);

@@ -5,7 +5,7 @@ static void initUsart(void);
 static void initAdcGpio(void);
 
 void initGpio(){
-    PORT_DIRSET(PORTA) = 0x40; //PA06 (0x40) PA07(0x80)
+    PORT_DIRSET(PORTA) = 0x40; 
     initUsart();
     initAdcGpio();
 }
@@ -23,8 +23,8 @@ static void initUsart(void){
 }
 
 static void initAdcGpio(void){
-    //ADC AIN_5 PA07
-        PORT_DIRSET(PORTA) |= 0x80; //PA07
+    //ADC AIN_5 PA07 mux B
+     //   PORT_DIRSET(PORTA) |= 0x80; //PA07
         PORT_MUX(PORTA,7) |= 0x10; //Upper Nibble is PA5 Lower Nibble is PA4, 0x1 is ADC
         PORT_PINCFG(PORTA,7) |= 0x01; //use pin mux value
 }

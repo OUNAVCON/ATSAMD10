@@ -12,9 +12,11 @@ void initAdc(){
     while(GCLK_STATUS & 0x80);
     ADC_DBGCTRL = 0x01;
     ADC_REFCTRL = 0x02; //Ref is 1/2 VDDANA
+    ADC_SAMPCTRL = 0x05;
     while(ADC_STATUS & 0x80);
-    ADC_CTRLB = 0x0500; //Write Sync'd, clock/128, 12bit conversion,
+    ADC_CTRLB = 0x0100; //Write Sync'd, clock/128, 12bit conversion,
     while(ADC_STATUS & 0x80);
+	 // ADC_OFFSETCORR = 0x0EFF;
 
     /*
      * Calibration data.
@@ -32,7 +34,7 @@ void initAdc(){
 }
 
 void adc_ISR(void){
-    uint16_t results = 0;
+    int16_t results = 0;
     ADC_INTENCLR |= 1;
     ADC_INTFLAG |= 1;
     while(ADC_STATUS & 0x80);
