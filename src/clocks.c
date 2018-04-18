@@ -6,10 +6,22 @@ static void DFLL48M_to_core_init(void);
 void initClocks(void){
 uint32_t osc8Value = 0x00;
 //Disable the Watch Dog.
-
-
 WDT_CTRL = 0x00;
 while(WDT_STATUS & 0x80); //make sure that the wdt is disabled.
+
+
+/*
+ * Calibration data.
+ * 34:27 ADC Linearity CALIB offset: 0x28 bits: 0-7
+ * 37:35 ADC_Bias_Cal CALIB offset: 0x28 bits: 8-10
+ * 44:38 OSC 32k Cal OSC32K offset 0x18, bits: 16-22
+ * 63:58 DFLL 48M Course Cal //Loaded into DFLL48M Value offset 0x28
+ */
+
+uint16_t OSC32K_Cal = (*((volatile uint16_t*)CALIBRATION+4));
+OSC32K_Cal &= 0b1111111000000;
+OSC32K_Cal >>= 6;
+
 
 osc8Value = SYSCTRL_OSC8M;
 osc8Value &= 0xFFFFFCFF;
@@ -20,6 +32,11 @@ while(GCLK_STATUS & 0x80);
 //GCLK_GENDIV = clkDiv | 0x300; //Set clock generator divider to 1;
 
 DFLL48M_to_core_init();
+
+//Set clock 1 to be OSC8M divide by 1
+GCLK_GENCTRL = 0x00010601;
+while(GCLK_STATUS & 0x80);
+
 }
 
 
@@ -59,7 +76,6 @@ DFLL48M_to_core_init();
 //Set up the Multiplier to be just below the 48MHZ frequency.  1465 * 32KHZ is 46.880MHZ.  The step sizes
 // signify the maximum steps for the frequency adjustment
    SYSCTRL_DFLLMUL = 0x000005B9 | 0x1C000000 | 0x00FF0000;
-
   
 
 //Switch DFLL48M to Closed Loop and enable WAITLOCK
