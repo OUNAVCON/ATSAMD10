@@ -25,8 +25,8 @@ void init_Tcc(void){
     TCC_WAVE = 0x00060604;
     TCC_PER = 0x0000FFFF;
     TCC_DBGCTRL = 0x01; //Enable debug.
-    TCC_CC(3) = 0x0000EFFF;
-    TCC_CC(4) = 0x0000EFFF;
+    TCC_CC(2) = 0x0000EFFF; //w[2] & w[3]
+    TCC_CC(3) = 0x0000EFFF; //w[4] & w[5]
 
     TCC_CTRLA |= 0x2; //Enalble the peripheral.
 }
