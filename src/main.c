@@ -2,14 +2,15 @@
 #include "clocks.h"
 #include "adc.h"
 #include "gpio.h"
+#include "tcc.h"
 #include "samd10d13as.h"
 
 
 int main (void){
 int i=0;
-uint16_t results;
-uint8_t intEn;
-uint8_t intFlg;
+//uint16_t results;
+//uint8_t intEn;
+//uint8_t intFlg;
 initGpio();
 initClocks();
 initAdc();

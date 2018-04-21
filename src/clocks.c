@@ -30,9 +30,7 @@ while(!(SYSCTRL_PCLKSR & 0x8));//Make sure the oscillator is stable
 
 while(GCLK_STATUS & 0x80);
 //GCLK_GENDIV = clkDiv | 0x300; //Set clock generator divider to 1;
-
 DFLL48M_to_core_init();
-
 //Set clock 1 to be OSC8M divide by 1
 GCLK_GENCTRL = 0x00010601;
 while(GCLK_STATUS & 0x80);

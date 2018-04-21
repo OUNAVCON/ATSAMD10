@@ -8,14 +8,14 @@
 #include "adc.h"
 #include "samd10d13as.h"
 
-static UINT8_t adcIndex = 0; //Index of ADC Readings.
-static const maxAdcIndex = 2;
-UINT8_t adcChannel[maxAdcIndex] = {4,5};
+static uint16_t adcIndex = 0; //Index of ADC Readings.
+#define maxAdcIndex  2
+uint8_t adcChannel[] = {4,5};
 /*
  * [0] - AIN_4 ()
  * [1] - AIN_5 ()
  */
-UINT16_t adcReadings[maxAdcIndex];
+uint16_t adcReadings[maxAdcIndex];
 
 void initAdc(){
     GCLK_CLKCTRL = 0x4113; //Set ADC to use OSC1, divide by 1
@@ -47,7 +47,6 @@ void initAdc(){
 //ADC triggering is done by event system on TCC TOP (PER reached event)
 
 void adc_ISR(void){
-    int16_t results = 0;
     while(ADC_STATUS & 0x80);
     adcReadings[adcIndex] = ADC_RESULT; //Conversion was finished now let's store the results.
         //Setup for the next Channel to be read.

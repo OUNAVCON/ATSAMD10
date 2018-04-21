@@ -3,11 +3,11 @@
 
 static void initUsart(void);
 static void initAdcGpio(void);
-
+static void initTccGpio(void);
 void initGpio(){
     PORT_DIRSET(PORTA) = 0x40; 
     initUsart();
-    initAdcGpio();
+//    initAdcGpio();
     initTccGpio();
 }
 
