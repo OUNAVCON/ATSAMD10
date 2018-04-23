@@ -40,8 +40,8 @@ void initAdc(){
     ADC_Cal >>= 3;
     ADC_CALIB = ADC_Cal;
     ADC_CTRLA = 0x02; //Enable the ADC. //Sync Busy.
-   while(ADC_STATUS & 0x80);
-   ADC_INPUTCTRL = 0x0F001800 | adcChannel[0];//Load the first channel to be converted. This will be started once the TCC event is triggered.
+    while(ADC_STATUS & 0x80);
+    ADC_INPUTCTRL = 0x0F001800 | adcChannel[0];//Load the first channel to be converted. This will be started once the TCC event is triggered.
 }
 
 //ADC triggering is done by event system on TCC TOP (PER reached event)

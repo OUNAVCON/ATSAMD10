@@ -7,7 +7,7 @@ static void initTccGpio(void);
 void initGpio(){
     PORT_DIRSET(PORTA) = 0x40; 
     initUsart();
-//    initAdcGpio();
+    initAdcGpio();
     initTccGpio();
 }
 
@@ -26,8 +26,8 @@ static void initUsart(void){
 static void initAdcGpio(void){
     //ADC AIN_5 PA07 mux B - Position Voltage
     //ADC AIN_4 PA06 mux B - Motor Current
-        PORT_MUX(PORTA,6) |= 0x11; //Upper Nibble is PA7 Lower Nibble is PA6, 0x1 is ADC
-        PORT_PINCFG(PORTA,6) |= 0x01; //use pin mux value
+        PORT_MUX(PORTA,6) |= 0x10; //Upper Nibble is PA7 Lower Nibble is PA6, 0x1 is ADC
+        //PORT_PINCFG(PORTA,6) |= 0x01; //use pin mux value
         PORT_PINCFG(PORTA,7) |= 0x01; //use pin mux value
 
 }

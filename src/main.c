@@ -1,6 +1,7 @@
 #include "stdint.h"
 #include "clocks.h"
 #include "adc.h"
+#include "events.h"
 #include "gpio.h"
 #include "tcc.h"
 #include "samd10d13as.h"
@@ -19,8 +20,9 @@ init_Tcc();
 
 
     NVIC_ISER |= 0x8000;
-
     ADC_INTENSET |= 0x01; //Enable the ADC interrupt.
+    init_Events();
+		ADC_SWTRIG |= 0x02;
 
     while(1){
         i++;
