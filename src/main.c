@@ -6,10 +6,13 @@
 #include "tcc.h"
 #include "samd10d13as.h"
 
+//extern volatile uint16_t adcReadings[maxAdcIndex];
+
+extern volatile uint16_t adcReadings[maxAdcIndex];
 
 int main (void){
 int i=0;
-//uint16_t results;
+uint16_t results;
 //uint8_t intEn;
 //uint8_t intFlg;
 initGpio();
@@ -22,13 +25,16 @@ init_Tcc();
     NVIC_ISER |= 0x8000;
     ADC_INTENSET |= 0x01; //Enable the ADC interrupt.
     init_Events();
-		ADC_SWTRIG |= 0x02;
+	//	ADC_SWTRIG |= 0x02;
 
     while(1){
         i++;
         if(i > 2000000){
                 i=0;
                 toggleLed();
+				results = adcReadings[0];
+        results = adcReadings[1];
+        results++;
         }
     }
 return 0;

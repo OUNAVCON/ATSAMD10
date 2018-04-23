@@ -21,6 +21,8 @@ void init_Tcc(void){
     // CTRLBSET.DIR Up-Down
     TCC_CTRLBSET = 0x20; //Enable Re-trigger.
     while(TCC_SYNCBUSY > 0);
+    TCC_EVCTRL = 0x00000480;
+    while(TCC_SYNCBUSY > 0);
     /*
      * DSBOTTOM
      * POLx=0 output is clear on increment to CC, and set when on decrement to CC.

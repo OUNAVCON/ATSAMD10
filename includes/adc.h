@@ -8,6 +8,8 @@
 #ifndef INCLUDES_ADC_H_
 #define INCLUDES_ADC_H_
 
+#define maxAdcIndex  2
+
 void initAdc(void);
 void adc_ISR(void);
 
