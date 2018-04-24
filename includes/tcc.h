@@ -9,7 +9,7 @@
 #define INCLUDES_TCC_H_
 
 
-void init_Tcc(void);
+void initTcc(void);
 
 
 #endif /* INCLUDES_TCC_H_ */

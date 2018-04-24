@@ -7,7 +7,7 @@
 #include "tcc.h"
 #include "samd10d13as.h"
 
-void init_Tcc(void){
+void initTcc(void){
 
     // Enable Bus Clock
     while(GCLK_STATUS & 0x80);
