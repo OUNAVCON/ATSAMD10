@@ -16,8 +16,8 @@ void toggleLed(){
 }
 
 static void initUsart(void){
-//SERCOM0, PA4 pad[0] and PA5 pad[1]
-    PORT_DIRSET(PORTA) |= 0x10; //PA04 output and PA05 input
+//SERCOM0, PA4 pad[0](TX) and PA5 pad[1](RX)
+    PORT_DIRSET(PORTA) |= 0x20; //PA04 output and PA05 input
     PORT_MUX(PORTA,4) |= 0x33; //Upper Nibble is PA5 Lower Nibble is PA4, 0x3 is Sercom0
     PORT_PINCFG(PORTA,4) |= 0x01; //use pin mux value
     PORT_PINCFG(PORTA,5) |= 0x01; //use pin mux value
