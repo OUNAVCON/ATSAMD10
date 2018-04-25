@@ -7,7 +7,7 @@
 #include "tcc.h"
 #include "samd10d13as.h"
 
-void init_Tcc(void){
+void initTcc(void){
 
     // Enable Bus Clock
     while(GCLK_STATUS & 0x80);
@@ -20,6 +20,8 @@ void init_Tcc(void){
     // CTRLA.PRESYNC (On reload 0)
     // CTRLBSET.DIR Up-Down
     TCC_CTRLBSET = 0x20; //Enable Re-trigger.
+    while(TCC_SYNCBUSY > 0);
+    TCC_EVCTRL = 0x00000480;
     while(TCC_SYNCBUSY > 0);
     /*
      * DSBOTTOM

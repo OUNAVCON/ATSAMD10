@@ -1,6 +1,1 @@
-#ifndef _SERCOM0_H_
-#define _SERCOM0_H_
-
-void initSercom0(void);
-
-#endif
+#ifndef _SERCOM0_H_#define _SERCOM0_H_void initSercom0(void);void sendByte(uint8_t data);uint8_t readByte(void);#endif
