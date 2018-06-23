@@ -9,8 +9,11 @@
 
 
 float getMotorCurrent(void){
-
+	float result = 0.0;
+	return result;
 }
-float getPosition(void){
 
+float getPosition(void){
+	float result = 0.0;
+	return result;
 }
